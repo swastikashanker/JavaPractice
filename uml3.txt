@@ -1,0 +1,59 @@
+import java.util.Scanner;
+
+interface GeometricObject {
+    double getParimeter();
+
+    double getArea();
+}
+
+interface Resize {
+    public void resize(int percent);
+}
+
+class Circle implements GeometricObject {
+    double radius = 1.0;
+
+    Circle(double radius) {
+        this.radius = radius;
+    }
+
+    @Override
+    public double getParimeter() {
+        return 2 * Math.PI * radius;
+    }
+
+    @Override
+    public double getArea() {
+        return Math.PI * (radius * radius);
+    }
+}
+
+class ResizableCircle extends Circle implements Resize {
+    ResizableCircle(double radius) {
+        super(radius);
+    }
+
+    @Override
+    public void resize(int percent) {
+        this.radius = radius*percent/100;
+    }
+}
+
+class TestClass {
+    public static void main(String args[]) throws Exception {
+        Scanner sc  =  new Scanner(System.in);
+        double r1 = sc.nextDouble();
+        int r2 = sc.nextInt();
+
+        ResizableCircle rc = new ResizableCircle(r1);
+       //System.out.println(rc.radius);
+        System.out.println(rc.getArea());
+        System.out.println(rc.getParimeter());
+
+        rc.resize(r2);
+        //System.out.println(rc.radius);
+        System.out.println(rc.getArea());
+        System.out.println(rc.getParimeter());
+    }
+}
+

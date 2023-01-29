@@ -1,0 +1,50 @@
+ if (Pattern.matches("[A-Za-z ]+", label) && label.length() <= 255 && label != "") {
+            this.label = label;
+        }else {
+            throw new Exception();
+        }
+        
+    ------------>Regex pattern for :It must contain only
+letters of English Alphabet and whitespace. It cannot be empty and its
+length should not exceed 255 characters.    
+        
+      
+      
+   
+           if (Pattern.matches("[0-9]{10}", phoneNumber)) {
+            this.phoneNumber = phoneNumber;
+        }else {
+            throw new Exception();
+        }
+        
+        --------->It should contain
+exactly 10 digits.      
+
+
+//using filters
+
+    public List<Contact> searchByName(String name) {
+        List<Contact> contactsByName = null;
+        if (name.isEmpty()) {
+            contactsByName = this.contacts;
+        } else {
+            contactsByName = this.contacts
+                    .stream()
+                    .filter(contact -> contact.getName().toLowerCase().startsWith(name.toLowerCase()))
+                    .collect(Collectors.toList());
+        }
+        return contactsByName;
+    }
+
+    public List<Contact> searchByOrganisation(String name) {
+        List<Contact> contactsByOrganisation = null;
+        if (name.isEmpty()) {
+            contactsByOrganisation = this.contacts;
+        } else {
+            contactsByOrganisation = this.contacts
+                    .stream()
+                    .filter(contact -> contact.getOrganisation().toLowerCase().startsWith(name.toLowerCase()))
+                    .collect(Collectors.toList());
+        }
+        return contactsByOrganisation;
+    }

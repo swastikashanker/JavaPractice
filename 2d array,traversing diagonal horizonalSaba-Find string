@@ -1,0 +1,104 @@
+/* IMPORTANT: Multiple classes and nested static classes are supported */
+
+/*
+ * uncomment this if you want to read input.
+//imports for BufferedReader
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+//import for Scanner and other utility classes
+import java.util.*;
+*/
+import java.util.*;
+import java.io.*;
+// Warning: Printing unwanted or ill-formatted data to output will cause the test cases to fail
+
+class TestClass {
+    public static void main(String args[]) throws Exception {
+
+        /* Sample code to perform I/O:
+         * Use either of these methods for input
+
+        //BufferedReader
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String name = br.readLine();                // Reading input from STDIN
+        System.out.println("Hi, " + name + ".");    // Writing output to STDOUT
+
+        //Scanner
+        Scanner s = new Scanner(System.in);
+        String name = s.nextLine();                 // Reading input from STDIN
+        System.out.println("Hi, " + name + ".");    // Writing output to STDOUT
+
+        */
+
+        // Write your code here
+
+        //         First line: Two integer n and m, where n denotes (1 <= n,m <= 100) the number of rows and m denotes the number of columns in the grid
+        // Next n lines: Each line must contain a string of length m which contains lower-case English letters only
+
+        Scanner sc = new Scanner(System.in);
+
+        int m = sc.nextInt();
+        int n = sc.nextInt();
+
+        String str = "";
+        char[][] array = new char[m][n];
+
+        for (int i = 0; i < m; i++) {
+            str = sc.next().toLowerCase();
+            for (int j = 0; j < n; j++) {
+                array[i][j] = str.charAt(j);
+            }
+            str = "";
+        }
+
+        int count = 0;
+
+        //horizontal
+        for (int a = 0; a < m; a++) {
+            for (int b = 0; b< n; b++) {
+                if (b + 3 <= n- 1) {
+                    if (array[a][b] == 's' &&
+                        array[a][b + 1] == 'a' &&
+                        array[a][b + 2] == 'b' &&
+                        array[a][b + 3] == 'a') {
+                        count++;
+                    }
+                }
+
+        
+        //vertical
+                if (a + 3 <= m- 1) {
+                    if (array[a][b] == 's' &&
+                        array[a + 1][b] == 'a' &&
+                        array[a + 2][b] == 'b' &&
+                        array[a + 3][b] == 'a') {
+                        count++;
+                    }
+                }
+
+    //diagonal
+                if (a + 3 <= m - 1 && b + 3 <= n - 1) {
+                    if (array[a][b] == 's' &&
+                        array[a + 1][b + 1] == 'a' &&
+                        array[a + 2][b + 2] == 'b' &&
+                        array[a + 3][b + 3] == 'a') {
+                        count++;
+                    }
+                }
+
+    //reverse diagonal
+                if (a - 3 >= 0 && b + 3 <= n - 1) {
+                    if (array[a][b] == 's' &&
+                        array[a - 1][b + 1] == 'a' &&
+                        array[a - 2][b + 2] == 'b' &&
+                        array[a - 3][b + 3] == 'a') {
+                        count++;
+                    }
+                }
+            }
+        }
+        System.out.print(count);
+
+    }
+}

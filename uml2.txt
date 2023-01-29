@@ -1,0 +1,95 @@
+
+
+import java.util.Date;
+import java.util.Scanner;
+
+class Document
+{
+    String[] authors = new String[2];
+    int authorIndex=0;
+    Date date;
+
+    public String[] getAuthors() {
+        return authors;
+    }
+
+    public void addAuthor(String name) {
+        this.authors[authorIndex] = name;
+        this.authorIndex++;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+}
+
+class Book extends Document
+{
+    String title;
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+}
+
+class EMail extends Document
+{
+    private String subject;
+    private String[] to = {"manager@wipro.com","talentteam@wipro.com"};
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public String[] getTo() {
+        return to;
+    }
+
+}
+public class TestClass
+{
+    public static void main(String[] args)
+    {
+        Scanner sc  = new Scanner(System.in);
+
+        String a1 = sc.nextLine();
+        String a2 = sc.nextLine();
+        String title = sc.nextLine();
+        String emailId = sc.nextLine();
+        String subject = sc.nextLine();
+
+
+        Book book = new Book();
+        EMail email = new EMail();
+
+        book.setTitle(title);
+
+        email.addAuthor(a1);
+        email.addAuthor(a2);
+
+        email.setSubject(subject);
+
+        printOutput(book,email,emailId);
+    }
+
+    public static void printOutput(Book book, EMail email,String emailId)
+    {
+        System.out.println(email.getAuthors()[0]);
+        System.out.println(book.getTitle());
+        System.out.println(email.getAuthors()[1]);
+        System.out.println(emailId);
+        System.out.println(email.getTo()[0]);
+        System.out.println(email.getTo()[1]);
+        System.out.println(email.getSubject());
+    }
+
+}
+
